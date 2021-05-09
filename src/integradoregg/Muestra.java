@@ -37,8 +37,38 @@ public class Muestra {
         this.matrix=mAux;  
     }
     
-    private boolean validar(String cad){
-        boolean rta=(validarDimension(cad) && validarBases(cad));
+    public Muestra (String cad){
+        this.muestra=cad;
+        if (validar(cad)){
+            int z=0;
+            this.muestra=cad;
+            this.dim=(int) Math.sqrt(muestra.length());
+            char mAux[][]= new char [this.dim][this.dim];
+        
+            for(int i=0;i<dim;i++){
+                 for(int j=0;j<dim;j++){
+                       mAux[i][j]=muestra.charAt(z);
+                       z++;
+                 }
+            }
+        
+        this.matrix=mAux;  
+        }
+    }
+
+    public String getMuestra() {
+        return muestra;
+    }
+    
+    public boolean validar(String cad){
+        boolean rta=false;
+        if (validarDimension(cad)){
+            if(validarBases(cad)){
+                rta=true;
+            }
+        }else{
+            rta=false;
+        }
         return rta;
     }
     
@@ -74,6 +104,8 @@ public class Muestra {
             System.out.println("");
         }
     }
+    
+    
     
     public boolean verificarGenZ(){
         boolean rta;
