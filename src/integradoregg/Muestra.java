@@ -18,11 +18,11 @@ public class Muestra {
         int z=0;
         System.out.println("INGRESE LA MUESTRA: ");
         this.muestra=entrada.nextLine();
-        do{
+       while (!validar(muestra)){
             System.out.println("LA MUESTRA NO ES VALIDA. INTENTE OTRA VEZ.");
             System.out.println("INGRESE LA MUESTRA: ");
             this.muestra=entrada.nextLine();
-        }while (!validar(muestra));
+        }
         
         this.dim=(int) Math.sqrt(muestra.length());
         char mAux[][]= new char [this.dim][this.dim];
@@ -57,8 +57,6 @@ public class Muestra {
                 rta=false;
             }
         }
-         
-        
         return rta;
     }
 
@@ -66,12 +64,50 @@ public class Muestra {
         return matrix;
     }
     
-    public void mostrar(char [][] matrix){
+    public void mostrar(){
+        char m[][]=getMatrix();
+      
         for(int i=0;i<this.dim;i++){
             for(int j =0;j<dim;j++){
-                System.out.print(matrix[i][j]+" ");
+                System.out.print(m[i][j]+" ");
             }
             System.out.println("");
         }
+    }
+    
+    public boolean verificarGenZ(){
+        boolean rta;
+        rta=(diagonalP(getMatrix())&&diagonalO(getMatrix()));
+        return rta;
+    }
+    
+    private boolean diagonalP(char [][] m){
+        char base = m[0][0]; boolean rta=true;
+        
+        for (int i = 0; i<this.dim;i++){
+            for(int j =0;j<this.dim;j++){
+                if (j==i && base!=m[i][j]){
+                    rta=false;
+                }
+            }
+        
+        }
+        return rta;
+    }
+    
+     private boolean diagonalO(char [][] m){
+        char base = m[0][0]; boolean rta=true;
+        
+        for (int i = 0; i<this.dim;i++){
+            for(int j =0;j<this.dim;j++){
+                if (j+i==(dim-1)){
+                    if (base!=m[i][j]) {
+                        rta=false;
+                    }
+                }
+            }
+        
+        }
+        return rta;
     }
 }
