@@ -36,6 +36,8 @@ public class Muestra {
         
         this.matrix=mAux;  
     }
+
+    
     
     public Muestra (String cad){
         this.muestra=cad;
